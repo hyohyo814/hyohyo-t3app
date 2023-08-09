@@ -10,6 +10,7 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import { LoadingPage, LoadingSpinner } from "~/components/loading";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
+import { NextPage } from "next";
 
 dayjs.extend(relativeTime);
 
@@ -92,10 +93,12 @@ const PostView = (props: PostWithUser) => {
       />
       <div className="flex flex-col">
         <div className="flex whitespace-pre text-slate-300">
-          <span>{`@${author.username}`}</span>
-          <span className="font-thin">
-            {` · ${dayjs(post.createdAt).fromNow()}`}
-          </span>
+          <Link href={`/@${author.username}`}><span>{`@${author.username}`}</span></Link>
+          <Link href={`/post/${post.id}`}>
+            <span className="font-thin">
+              {` · ${dayjs(post.createdAt).fromNow()}`}
+            </span>
+          </Link>
         </div>
         <span className="text-xl">{post.content}</span>
       </div>
@@ -119,7 +122,7 @@ const Feed = () => {
   );
 };
 
-export default function Home() {
+const Home: NextPage = () => {
   const { user, isLoaded: userLoaded, isSignedIn } = useUser();
 
   api.posts.getAll.useQuery();
@@ -149,4 +152,6 @@ export default function Home() {
       </main>
     </>
   );
-}
+};
+
+export default Home;
