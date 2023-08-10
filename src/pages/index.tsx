@@ -1,16 +1,13 @@
-import Head from "next/head";
-import Link from "next/link";
 import Image from "next/image";
 import { api } from "~/utils/api";
-import type { RouterOutputs } from "~/utils/api";
-import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
+import { SignInButton, useUser } from "@clerk/nextjs";
 
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { LoadingPage, LoadingSpinner } from "~/components/loading";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
-import { NextPage } from "next";
+import { type NextPage } from "next";
 import { PageLayout } from "~/components/layout";
 import { PostView } from "~/components/postview";
 
